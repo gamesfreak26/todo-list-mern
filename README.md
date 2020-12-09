@@ -2,13 +2,15 @@
 
 This project was made to learn the MERN Stack and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using the basic template.
 
+You can find the backend [here](https://github.com/gamesfreak26/-todo-list-mern-server)
+
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `yarn install` || `npm install`
 
-Installs all the packages that the app needs to run.  
+Installs all the packages that the app needs to run.
 
 ### `yarn start` || `npm start`
 
