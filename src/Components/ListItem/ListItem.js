@@ -1,17 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Item, StrikedItem} from '../Styled'
 import './ListItem.css'
 
-const ListItem = ({handleChange, item}) => {
+
+const ListItem = ({key, item, deleteItem}) => {
+	const [checked, setChecked] = useState(false)
+	const handleChange = (event) => {
+		console.log("checked:", event.target.checked)
+		setChecked(event.target.checked)
+	}
+
     return(
         <div>
             <li>
-                <div>
+                <div>	
                     <input
                         type="checkbox"
-                        onChange={handleChange}
+						onChange={handleChange}
+						value={checked}
                     />
-                    {item}
-                    <button>Delete item</button>
+					{checked ? <StrikedItem color="blue">{item}</StrikedItem> : <Item>{item}</Item>}
+                    <button onClick={() => deleteItem(key)}>Delete item</button>
                 </div>
             </li>
             

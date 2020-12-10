@@ -17,21 +17,33 @@ const TodosList = ({handleChange}) => {
     const submitValue = (event) => {
         event.preventDefault()
         const frmdetails = {
-            'Item' : itemInList,
+            'Item' : itemInList, 
         }
-        setListItems(listItems.concat(<ListItem key={listItems.length} handleChange={handleChange} item={itemInList} />))
+        setListItems([itemInList,...listItems])
         console.log(frmdetails);
-    }
+	}
+
+	const deleteItem = (itemIndex) => {
+		let updatedList = [...listItems]
+		updatedList.splice(itemIndex,1)
+		setListItems(updatedList)
+	}
+	
+	const changeHandler = (event) => {
+		setItemInList(event.target.value)
+	}
 
     return(
         <div>
             <form onSubmit={submitValue}>
-                <input type="text" placeholder="todo..." onChange={e => setItemInList(e.target.value)}></input>
+                <input type="text" placeholder="todo..." onChange={changeHandler} value={itemInList}></input>
                 <Button className="addButton"  onClick={submitValue}>Add List Item</Button>
             </form>
             
             <ul>
-                {listItems}
+				{listItems.map((listItem, index) => (
+					<ListItem key={index} item={listItem} deleteItem={deleteItem}/>
+				))}
             </ul>
         </div>
     )
