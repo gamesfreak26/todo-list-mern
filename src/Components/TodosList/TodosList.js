@@ -25,7 +25,7 @@ const TodosList = ({handleChange}) => {
 
     return(
         <div>
-            <form>
+            <form onSubmit={submitValue}>
                 {/* Todo: figure out why pressing enter refreshes the page */}
                 <input type="text" placeholder="todo..." onChange={e => setItemInList(e.target.value)}></input>
                 <Button className="addButton"  onClick={submitValue}>Add List Item</Button>
