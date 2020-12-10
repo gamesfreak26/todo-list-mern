@@ -1,23 +1,25 @@
 import React from 'react'
+import {useState} from 'react'
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListItem from '../ListItem/ListItem'
 
 const TodosList = ({handleChange}) => {
+
+    const [listItems, setListItems] = useState([])
+
+    function addItemOnBtnClick() {
+        setListItems(listItems.concat(<ListItem key={listItems.length} handleChange={handleChange} />))
+    }
+
     return(
         <div>
-            <h1>Todo List</h1>
-            <p>Please add to-dos item(s) through the input field</p>
-            <Button className="addButton">Add List Item</Button>
-
+            <Button className="addButton" onClick={addItemOnBtnClick}>Add List Item</Button>
             <ul>
-                <ListItem handleChange={handleChange} />
-                <ListItem handleChange={handleChange}/>
+                {listItems}
             </ul>
         </div>
     )
-
-    
 }
 
 export default TodosList

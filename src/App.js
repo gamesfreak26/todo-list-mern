@@ -5,15 +5,23 @@ import './App.css';
 
 const App = () => {
 
-  const [listItem, setListItem] = useState([])
+  var count = 0
+
+  
+  // An item in listItems should have an id and a label.  
 
   function completeHandler() {
     console.log(`Checkbox Clicked`)
   }
 
+
+
   return (
     <div >
       <Nav />
+      <h1>Todo List</h1>
+      <p>Please add to-dos item(s) through the input field</p>
+
       <TodosList handleChange={completeHandler} />
       
     </div>
