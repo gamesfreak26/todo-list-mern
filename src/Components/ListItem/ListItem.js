@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Item, StrikedItem} from '../Styled'
 import './ListItem.css'
+import Button from 'react-bootstrap/Button';
 
 
 const ListItem = ({key, item, deleteItem}) => {
@@ -13,15 +14,15 @@ const ListItem = ({key, item, deleteItem}) => {
     return(
         <div>
             <li>
-                <div>	
-                    <input
+              
+                    <input 
                         type="checkbox"
 						onChange={handleChange}
 						value={checked}
                     />
 					{checked ? <StrikedItem color="blue">{item}</StrikedItem> : <Item>{item}</Item>}
-                    <button onClick={() => deleteItem(key)}>Delete item</button>
-                </div>
+                    <Button variant="outline-danger" onClick={() => deleteItem(key)}>Delete item</Button>
+            
             </li>
             
         </div>
