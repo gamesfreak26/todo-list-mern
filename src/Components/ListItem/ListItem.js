@@ -11,8 +11,6 @@ const ListItem = ({handleChange}) => {
                         onChange={handleChange}
                     />
                     <input placeholder="Item" />
-                    <br />
-                    <button>Complete</button>
                     <button>Delete item</button>
                 </div>
             </li>
