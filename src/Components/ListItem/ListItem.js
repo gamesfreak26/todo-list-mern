@@ -1,7 +1,7 @@
 import React from 'react'
 import './ListItem.css'
 
-const ListItem = ({handleChange}) => {
+const ListItem = ({handleChange, item}) => {
     return(
         <div>
             <li>
@@ -10,7 +10,7 @@ const ListItem = ({handleChange}) => {
                         type="checkbox"
                         onChange={handleChange}
                     />
-                    <input placeholder="Item" />
+                    {item}
                     <button>Delete item</button>
                 </div>
             </li>
