@@ -1,11 +1,22 @@
 import React from 'react'
+import './ListItem.css'
 
-const ListItem = () => {
+const ListItem = ({handleChange}) => {
     return(
         <div>
-            <input placeholder="Item" />
-            <button>Complete</button>
-            <button>Delete item</button>
+            <li>
+                <div>
+                    <input
+                        type="checkbox"
+                        onChange={handleChange}
+                    />
+                    <input placeholder="Item" />
+                    <br />
+                    <button>Complete</button>
+                    <button>Delete item</button>
+                </div>
+            </li>
+            
         </div>
     )
 }

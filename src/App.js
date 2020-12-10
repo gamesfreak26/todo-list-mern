@@ -1,19 +1,21 @@
-import React from 'react'
-import ListItem from './Components/ListItem/ListItem'
+import React, { useState } from 'react'
 import Nav from './Components/Nav/Nav'
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import TodosList from './Components/TodosList/TodosList'
 import './App.css';
 
 const App = () => {
+
+  const [listItem, setListItem] = useState([])
+
+  function completeHandler() {
+    console.log(`Checkbox Clicked`)
+  }
+
   return (
     <div >
       <Nav />
-      <h1>Todo List</h1>
-
-      <Button className="addButton">Add List Item</Button>
-
-      <ListItem />
+      <TodosList handleChange={completeHandler} />
+      
     </div>
   )
 }
