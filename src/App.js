@@ -1,14 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Nav from './Components/Nav/Nav'
 import TodosList from './Components/TodosList/TodosList'
 import './App.css';
 
 const App = () => {
-
-  // An item in listItems should have an id and a label.  
-  function completeHandler() {
-    console.log(`Checkbox Clicked`)
-  }
 
   return (
     <div >

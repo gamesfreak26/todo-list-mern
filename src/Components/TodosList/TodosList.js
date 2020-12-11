@@ -3,23 +3,58 @@ import {useState} from 'react'
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListItem from '../ListItem/ListItem'
+import {getList, addItem} from '../../Services/listServices'
 
 const TodosList = () => {
 
+    function fetchList() {
+        getList().then((listData) => {
+            console.log(listData)
+            setItemsList(listData)
+        }).catch((error) => {
+          console.log("An error occurred fetching blog posts from the server:", error) 
+        })
+      }
+    
+      useEffect(() => {
+        fetchList()
+      },[])
+
+
     // Set the states of the List of Items and the Item
-    const [ItemsList, setItemsList] = useState([])
+    const [itemsList, setItemsList] = useState([])
     const [item, setItem] = useState('');
 
     // When user presses enter to submit form or clicks on button, add the item to the list.
     const submitValue = (event) => {
         event.preventDefault()
-        setItemsList([item,...ItemsList])
+        
+        const newItem = {
+            label: item,
+            username: "Teej",
+            completed: false
+        }
+
         // Add Item to backend
+        addItem(newItem)
+            .then((createdItem) => {
+                console.log(createdItem)
+                if (createdItem) {
+                    setItemsList([createdItem,...itemsList])
+                }
+                else console.log("No createdItem from server")
+            })
+            .catch((error) => {
+                console.log("Error: ", error.message)
+            })
 	}
 
-	const deleteItem = (itemIndex) => {
-		let updatedList = [...ItemsList]
-		updatedList.splice(itemIndex,1)
+	const deleteItem = (itemId) => {
+
+        // Filter the list to remove the item that you are deleting
+        let updatedList = itemsList.filter((item) => {
+            return item._id !== itemId
+        })
         setItemsList(updatedList)
         // Delete Item from backend
 	}
@@ -42,7 +77,7 @@ const TodosList = () => {
             </form>
             
             <ul>
-				{ItemsList.map((listItem, index) => (
+				{itemsList.map((listItem, index) => (
                     <ListItem 
                         key={index} 
                         item={listItem} 
