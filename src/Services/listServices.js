@@ -12,3 +12,9 @@ export async function addItem(item) {
     // return the item that gets created.
     return response.data
 }
+
+export async function deleteOneItem(itemId) {
+    const response = await api.delete(`/list/${itemId}`)
+    // return the item that gets created.
+    return response.data
+}

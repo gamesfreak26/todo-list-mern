@@ -3,7 +3,7 @@ import {useState} from 'react'
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListItem from '../ListItem/ListItem'
-import {getList, addItem} from '../../Services/listServices'
+import {getList, addItem, deleteOneItem} from '../../Services/listServices'
 
 const TodosList = () => {
 
@@ -51,12 +51,19 @@ const TodosList = () => {
 
 	const deleteItem = (itemId) => {
 
-        // Filter the list to remove the item that you are deleting
-        let updatedList = itemsList.filter((item) => {
-            return item._id !== itemId
-        })
-        setItemsList(updatedList)
-        // Delete Item from backend
+        deleteOneItem(itemId)
+            .then(() => {
+                // Filter the list to remove the item that you are deleting
+                let updatedList = itemsList.filter((item) => {
+                    return item._id !== itemId
+                })
+                setItemsList(updatedList)
+            })
+            .catch((error) => {
+                console.log("Error: ", error.message)
+            })
+
+        
 	}
     
     // When typing the value into the input field, set the state of item.
