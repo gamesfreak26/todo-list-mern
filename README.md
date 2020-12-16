@@ -4,13 +4,16 @@ This project was made to learn the MERN Stack and was bootstrapped with [Create 
 
 You can find the backend [here](https://github.com/gamesfreak26/-todo-list-mern-server)
 
-### What has been done
+## Things that need to be done
 
-You can add an item and delete an item.  
+**Done:**
 
-### What needs to be done
+- Add an item
+- Delete an item
 
-You need to be able to edit an item.  
+**Pending:**
+- Edit an item
+- Improve visuals
 
 ## Available Scripts
 
