@@ -14,6 +14,7 @@ You can find the backend [here](https://github.com/gamesfreak26/-todo-list-mern-
 **Pending:**
 - Edit an item
 - Improve visuals
+- Write tests
 
 ## Available Scripts
 
