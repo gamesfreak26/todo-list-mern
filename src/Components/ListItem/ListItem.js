@@ -1,30 +1,38 @@
 import React, {useState} from 'react'
-import {Item, StrikedItem} from '../Styled'
 import './ListItem.css'
 import Button from 'react-bootstrap/Button';
+import DisplayListItem from '../DisplayListItem/DisplayListItem';
+import EditListItem from '../EditListItem/EditListItem';
 
 
 const ListItem = ({item, deleteItem}) => {
-	const [checked, setChecked] = useState(false)
-	const handleChange = (event) => {
-		console.log("checked:", event.target.checked)
-		setChecked(event.target.checked)
-	}
+
+    const [editFlag, setEditFlag] = useState(false)
+
+    const editItem = (itemId) => {
+
+        setEditFlag(editFlag => !editFlag)
+
+        console.log(`Edit Item: ${editFlag}`)
+        // editOneitem(itemId)
+        //     .then(() => {
+        //         let listItem = itemsList.filter((item) => {
+        //             return item._id === itemId
+        //         })
+        //     })
+    }
 
     return(
-        <div>
-            <li>
-                    <input 
-                        type="checkbox"
-						onChange={handleChange}
-						value={checked}
-                    />
-					{checked ? <StrikedItem color="blue">{item.label}</StrikedItem> : <Item>{item.label}</Item>}
-                    <Button variant="outline-danger" onClick={() => deleteItem(item._id)}>Delete item</Button>
-            
-            </li>
-            
-        </div>
+        <li>
+            <div>
+                {editFlag ? <EditListItem /> : <DisplayListItem item={item} />}
+                <Button variant="primary" onClick={() => editItem(item._id)}>Edit</Button>
+                <Button variant="outline-danger" onClick={() => deleteItem(item._id)}>Delete item</Button>
+            </div>
+            <div >
+                
+            </div>
+        </li>
     )
 }
 

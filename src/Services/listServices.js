@@ -16,5 +16,9 @@ export async function addItem(item) {
 export async function deleteOneItem(itemId) {
     const response = await api.delete(`/list/${itemId}`)
     // return the item that gets created.
+}
+
+export async function editOneitem(itemId) {
+    const response = await api.put(`/list/${itemId}`)
     return response.data
 }
