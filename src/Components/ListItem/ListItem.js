@@ -1,36 +1,46 @@
 import React, {useState} from 'react'
 import './ListItem.css'
-import Button from 'react-bootstrap/Button';
+
 import DisplayListItem from '../DisplayListItem/DisplayListItem';
 import EditListItem from '../EditListItem/EditListItem';
+import Button from 'react-bootstrap/Button';
 
 
-const ListItem = ({item, deleteItem}) => {
+const ListItem = ({item, deleteItem, editListItem}) => {
 
     const [editFlag, setEditFlag] = useState(false)
 
     const editItem = (itemId) => {
 
-        setEditFlag(editFlag => !editFlag)
+        setEditFlag(!editFlag)
 
         console.log(`Edit Item: ${editFlag}`)
-        // editOneitem(itemId)
-        //     .then(() => {
-        //         let listItem = itemsList.filter((item) => {
-        //             return item._id === itemId
-        //         })
-        //     })
     }
 
     return(
         <li>
             <div>
-                {editFlag ? <EditListItem /> : <DisplayListItem item={item} />}
-                <Button variant="primary" onClick={() => editItem(item._id)}>Edit</Button>
+                {editFlag ? 
+                    <EditListItem 
+                        item={item} 
+                        editListItem={editListItem}
+                    /> 
+                    : 
+                    <DisplayListItem 
+                        item={item} 
+                        deleteItem={deleteItem} 
+                        editItem={editItem}
+                    />
+                }
+                {!editFlag && <Button variant="primary" onClick={() => editItem(item._id)}>Edit</Button>}
                 <Button variant="outline-danger" onClick={() => deleteItem(item._id)}>Delete item</Button>
-            </div>
-            <div >
-                
+                {editFlag && <Button 
+                    variant="danger" 
+                    onClick={() => {
+                        setEditFlag(!editFlag)
+                        editListItem(item._id, item.label)
+                    }    
+                }>Save</Button>}
             </div>
         </li>
     )

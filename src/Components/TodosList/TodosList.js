@@ -13,10 +13,9 @@ const TodosList = () => {
     // Get all items in the list
     function fetchList() {
         getList().then((listData) => {
-            console.log(listData)
             setItemsList(listData)
         }).catch((error) => {
-          console.log("An error occurred fetching blog posts from the server:", error) 
+          console.log("An error occurred fetching the todo list items:", error) 
         })
       }
     
@@ -62,6 +61,27 @@ const TodosList = () => {
                 console.log("Error: ", error.message)
             })
     }
+
+    const editListItem = (itemId, label) => {
+        console.log("Save button pressed")
+        console.log(itemId)
+
+        editOneitem(itemId)
+            .then(() => {
+                let listItem = itemsList.find((item) => {
+                    return item._id === itemId
+                })
+                console.log(`listItem: ${listItem}`)
+
+                listItem.label = label
+                setItemsList(itemsList)
+            })
+            .catch((error) => {
+                console.log("Error: ", error.message)
+            })
+            
+
+    }
     
 
     
@@ -88,6 +108,7 @@ const TodosList = () => {
                         key={index} 
                         item={listItem} 
                         deleteItem={deleteItem}
+                        editListItem={editListItem}
                     />
 				))}
             </ul>

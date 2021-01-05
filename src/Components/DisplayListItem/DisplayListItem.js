@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {Item, StrikedItem} from '../Styled'
 
-const DisplayListItem = ({item}) => {
+
+const DisplayListItem = ({item, deleteItem, editItem}) => {
 
     const [checked, setChecked] = useState(false)
 	const handleChange = (event) => {
@@ -17,6 +18,7 @@ const DisplayListItem = ({item}) => {
                 value={checked}
             />
             {checked ? <StrikedItem color="blue">{item.label}</StrikedItem> : <Item>{item.label}</Item>}
+            
         </div>
     )
 }
